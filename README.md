@@ -19,7 +19,7 @@ Whether you're learning graph traversal algorithms or simply exploring chess puz
 
 - Generate customizable **N × N** chessboards
 - Select any valid starting position
-- Responsive layout for different screen sizes
+- Responsive layout dynamically scaling for mobile, laptop, and desktop viewports
 
 ### Efficient Knight's Tour Solver
 
@@ -40,12 +40,12 @@ Whether you're learning graph traversal algorithms or simply exploring chess puz
 - Shows board coordinates for each step
 - Highlights the current move during animation
 
-### Modern User Interface
+### Modern User Interface & Dialogs
 
-- Glassmorphism-inspired dark theme
-- Gradient backgrounds
-- Smooth transitions
-- Hover effects and micro-interactions
+- Glassmorphism-inspired dark theme with responsive sidebars
+- Gradient backgrounds and smooth hover transitions
+- Custom modal pop-ups for invalid coordinate warnings and route planning failures
+- Dynamic layout resizing that keeps elements aligned without scrollbars
 
 ---
 
@@ -109,9 +109,9 @@ KnightTour/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/KnightDispatch.git
+git clone https://github.com/bhavyasanthoshi02/KnightTour.git
 
-cd KnightDispatch
+cd KnightTour
 ```
 
 ---
