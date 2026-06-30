@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* 🌌 Animated Background */
+body {
+    background: linear-gradient(-45deg, #0b1c2c, #0f2d46, #081521, #102a3d);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    color: white;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.app { display: flex; }
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #081521;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    color: #4db8ff;
+    margin-bottom: 30px;
+}
+
+.sidebar ul { list-style: none; }
+.sidebar li {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* ACTIVE TAB (PREMIUM LOOK) */
+.sidebar li.active {
+    background: linear-gradient(135deg, #1e90ff, #4db8ff);
+    color: #000;
+    box-shadow: 0 0 12px #4db8ff66;
+}
+
+/* HOVER EFFECT */
+.sidebar li:hover {
+    background: rgba(77, 184, 255, 0.15);
+    transform: translateX(5px);
+}
+
+/* Main */
+.main { flex: 1; padding: 20px; }
+h1 { margin-bottom: 20px; }
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+/* Cards */
+.card {
+    background: #102a3d;
+    padding: 20px;
+    border-radius: 15px;
+    width: 260px;
+}
+
+.sim-title { margin-top: 25px; }
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background: #081521;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #4db8ff, #1e90ff);
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover { transform: scale(1.05); }
+
+/* Board */
+#board {
+    display: grid;
+    gap: 5px;
+    position: relative;
+}
+
+/* Cells */
+.cell {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 6px;
+    position: relative;
+}
+
+.dark { background: #1a3b55; }
+.light { background: #2d4f66; }
+
+/* ✨ Theme-based highlights */
+.start {
+    background: linear-gradient(135deg, #1e90ff, #4db8ff);
+    color: black;
+}
+
+.end {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+}
+
+.active {
+    background: rgba(77,184,255,0.25) !important;
+    box-shadow: inset 0 0 12px #4db8ff88;
+}
+
+/* ♞ Knight */
+.knight {
+    position: absolute;
+    font-size: 28px;
+    color: #4db8ff;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    text-shadow: 0 0 8px #4db8ff;
+}
+
+/* Movement Panel */
+.right {
+    width: 260px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.move-item {
+    background: #0d2436;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 🎯 CURRENT STEP */
+.current-move {
+    background: #4db8ff22;
+    border: 1px solid #4db8ff55;
+    box-shadow: 0 0 8px #4db8ff55;
+}
+/* ♞ Knight Icon */
+.knight {
+    position: absolute;
+    font-size: 28px;
+    color: #4db8ff;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    text-shadow: 0 0 8px #4db8ff;
+}
+
+/* Make board relative for positioning */
+#board {
+    position: relative;
+}
+
+/* Cell positioning reference */
+.cell {
+    position: relative;
+}
+.analytics {
+    margin-top: 25px;
+    margin-left: 42px;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    text-align: center;
+    width: 420px; /* increase width to fit 4 boxes */
+}
+
+.analytics h3 {
+    margin-bottom: 15px;
+}
+
+/* ==== GRID ==== */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 boxes in one row */
+    gap: 12px;
+}
