@@ -12,16 +12,21 @@ async function generateTour() {
     clearInterval(timer);
     step = 0;
 
-    let msg = document.getElementById("message");
-    msg.innerText = "";
-
     let n = +document.getElementById("size").value;
     let r = +document.getElementById("startRow").value;
     let c = +document.getElementById("startCol").value;
 
     // ❌ INVALID INPUT
-    if (n <= 0 || r < 0 || c < 0 || r >= n || c >= n) {
-        msg.innerText = "Invalid input!";
+    if (n <= 0) {
+        showError("Grid size must be a positive integer.");
+        return;
+    }
+    if (r < 0 || r >= n) {
+        showError(`Start Row is out of bounds! For grid size ${n}, row must be between 0 and ${n - 1}.`);
+        return;
+    }
+    if (c < 0 || c >= n) {
+        showError(`Start Column is out of bounds! For grid size ${n}, column must be between 0 and ${n - 1}.`);
         return;
     }
 
@@ -30,7 +35,7 @@ async function generateTour() {
 
     // ❌ NO ROUTE
     if (data.error) {
-        msg.innerText = "No route found!";
+        showError("No route found! A Knight's Tour is not possible from this starting position.");
         return;
     }
 
@@ -96,8 +101,14 @@ function drawBoard(n) {
     const boardDiv = document.getElementById("board");
     boardDiv.innerHTML = "";
 
-    let boardWidth = Math.min(window.innerWidth - 40, 500);
-    let cellSize = Math.max(25, boardWidth / n);
+    let sidebarWidth = window.innerWidth > 768 ? 220 : 0;
+    let padding = window.innerWidth > 768 ? 50 : 30;
+    let sideCardsWidth = window.innerWidth > 1120 ? 480 : 0;
+    let gaps = window.innerWidth > 1120 ? 40 : 20;
+
+    let maxBoardWidth = window.innerWidth - sidebarWidth - padding - sideCardsWidth - gaps;
+    let boardWidth = Math.max(280, Math.min(maxBoardWidth, 450));
+    let cellSize = boardWidth / n;
     boardDiv.style.gridTemplateColumns = `repeat(${n}, ${cellSize}px)`;
 
     let maxMove = n * n - 1;
@@ -248,3 +259,12 @@ window.onresize = () => {
         }
     }
 };
+
+function showError(message) {
+    document.getElementById("modalErrorMessage").innerText = message;
+    document.getElementById("errorModal").classList.add("active");
+}
+
+function closeModal() {
+    document.getElementById("errorModal").classList.remove("active");
+}
