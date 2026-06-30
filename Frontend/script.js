@@ -42,8 +42,22 @@ async function generateTour() {
 
     placeKnightAtStart();
 
-    document.getElementById("analytics").innerText =
-        `Total Moves: ${n*n}\nGrid: ${n} x ${n}`;
+    // Update analytics
+    const maxMove = n * n - 1;
+    document.getElementById("analyticsMoves").innerText = n * n;
+    document.getElementById("analyticsGrid").innerText = `${n} x ${n}`;
+    document.getElementById("analyticsStart").innerText = `(${r}, ${c})`;
+
+    let endPos = "-";
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (board[i][j] === maxMove) {
+                endPos = `(${i}, ${j})`;
+                break;
+            }
+        }
+    }
+    document.getElementById("analyticsEnd").innerText = endPos;
 }
 
 //////////////////////////////////////////////////////////
@@ -82,7 +96,8 @@ function drawBoard(n) {
     const boardDiv = document.getElementById("board");
     boardDiv.innerHTML = "";
 
-    let cellSize = Math.max(30, 500 / n);
+    let boardWidth = Math.min(window.innerWidth - 40, 500);
+    let cellSize = Math.max(25, boardWidth / n);
     boardDiv.style.gridTemplateColumns = `repeat(${n}, ${cellSize}px)`;
 
     let maxMove = n * n - 1;
@@ -200,8 +215,13 @@ function moveKnight(move) {
     let rect = cell.getBoundingClientRect();
     let parentRect = cell.parentElement.getBoundingClientRect();
 
-    knightEl.style.left = (rect.left - parentRect.left + 10) + "px";
-    knightEl.style.top = (rect.top - parentRect.top + 10) + "px";
+    let knightWidth = knightEl.offsetWidth || 28;
+    let knightHeight = knightEl.offsetHeight || 28;
+    let leftOffset = (rect.width - knightWidth) / 2;
+    let topOffset = (rect.height - knightHeight) / 2;
+
+    knightEl.style.left = (rect.left - parentRect.left + leftOffset) + "px";
+    knightEl.style.top = (rect.top - parentRect.top + topOffset) + "px";
 
     cell.classList.add("active");
 }
@@ -211,3 +231,20 @@ function pause() {
 }
 
 window.onload = generateTour;
+
+window.onresize = () => {
+    if (board.length) {
+        let n = +document.getElementById("size").value;
+        drawBoard(n);
+        if (step > 0 && step <= movesList.length) {
+            for (let i = 0; i < step; i++) {
+                const m = movesList[i];
+                const cell = document.querySelector(`.cell[data-row="${m.x}"][data-col="${m.y}"]`);
+                if (cell) cell.classList.add("active");
+            }
+            moveKnight(movesList[Math.min(step - 1, movesList.length - 1)]);
+        } else {
+            placeKnightAtStart();
+        }
+    }
+};

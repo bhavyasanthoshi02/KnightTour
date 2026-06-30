@@ -53,44 +53,38 @@
                 <p id="message" style="margin-top:10px;color:#ff6b6b;"></p>
             </div>
 
-            <!-- Board -->
-            <div id="board"></div>
+            <!-- Board & Analytics Section -->
+            <div class="board-section">
+                <div id="board"></div>
+                
+                <div class="analytics" id="analyticsCard">
+                    <h3>Analytics</h3>
+                    <div class="analytics-grid">
+                        <div class="box">
+                            <span>Moves</span>
+                            <strong id="analyticsMoves">-</strong>
+                        </div>
+                        <div class="box">
+                            <span>Grid</span>
+                            <strong id="analyticsGrid">-</strong>
+                        </div>
+                        <div class="box">
+                            <span>Start</span>
+                            <strong id="analyticsStart">-</strong>
+                        </div>
+                        <div class="box">
+                            <span>End</span>
+                            <strong id="analyticsEnd">-</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Right Panel -->
             <div class="card right">
                 <h3>Movement Order</h3>
                 <div id="moves"></div>
             </div>
-            <div class="analytics" th:if="${board != null}">
-
-            <h3> Analytics</h3>
-
-            <div class="analytics-grid">
-
-                <div class="box">
-                    <span>Moves</span>
-                    <strong th:text="${n*n}"></strong>
-                </div>
-
-                <div class="box">
-                    <span>Grid</span>
-                    <strong th:text="${n + ' x ' + n}"></strong>
-                </div>
-                <div class="box">
-                    <span>Start</span>
-                    <strong th:text="${startPos}"></strong>
-                </div>
-
-                <div class="box">
-                    <span>End</span>
-                    <strong th:text="${endPos}"></strong>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
         </div>
     </div>
 </div>

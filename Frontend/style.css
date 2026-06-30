@@ -189,15 +189,24 @@ button:hover { transform: scale(1.05); }
 .cell {
     position: relative;
 }
+
+.board-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
 .analytics {
-    margin-top: 25px;
-    margin-left: 42px;
     padding: 20px;
     background: rgba(15, 23, 42, 0.95);
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     text-align: center;
-    width: 420px; /* increase width to fit 4 boxes */
+    width: 100%;
+    border: 1px solid rgba(77, 184, 255, 0.2);
 }
 
 .analytics h3 {
@@ -209,4 +218,89 @@ button:hover { transform: scale(1.05); }
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 boxes in one row */
     gap: 12px;
+}
+
+.analytics .box {
+    background: #0d2436;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1a3b55;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.analytics .box span {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #4db8ff;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.analytics .box strong {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+/* ==== RESPONSIVE STYLING ==== */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .card, .card.right {
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .right {
+        max-height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .sidebar h2 {
+        margin-bottom: 15px;
+    }
+    
+    .sidebar ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .sidebar li {
+        margin: 0;
+        padding: 8px 16px;
+    }
+    
+    .sidebar li:hover {
+        transform: none;
+    }
+    
+    .main {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
 }
